@@ -1,0 +1,29 @@
+<p id="notice"><%= notice %></p>
+
+<p>
+  <strong>Name:</strong>
+  <%= @team_name %>
+</p>
+ 
+
+<%= link_to 'Edit', edit_team_path(@team) %> |
+<%= link_to 'Back', teams_path %>
+
+
+
+ 
+<%= form_for [@team, @post] do |f| %> 
+ <%= f.text_field :post  %>
+ <%= f.hidden_field :team_id, :value => @team_id %>
+ <%= f.hidden_field :user_id, :value => @user_id %>
+  <%=f.submit "post"   %> 
+<% end %>
+
+<div id="comment_div">  
+    <% @posts.each do |post| %>
+        <%= post.post%>  <%= post.user_id%> <%= post.team_id%>
+        <br>
+    <% end %> 
+   
+</div>
+ 

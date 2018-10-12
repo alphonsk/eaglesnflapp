@@ -1,0 +1,20 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>Gameapp</title>
+    <%= csrf_meta_tags %>
+    <%= csp_meta_tag %>
+
+    <%= stylesheet_link_tag    'application', media: 'all', 'data-turbolinks-track': 'reload' %>
+    <%= javascript_include_tag 'application', 'data-turbolinks-track': 'reload' %>
+  </head>
+
+  <body>
+    <%= link_to 'h', root_path %>
+    <%= link_to 'su', new_user_registration_path %>
+    <%= link_to 'si', new_user_session_path %>
+    <%= link_to 'lo', destroy_user_session_path, method: :delete%>
+    
+    <%= yield %>
+  </body>
+</html>
