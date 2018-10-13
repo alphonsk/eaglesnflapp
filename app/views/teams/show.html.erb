@@ -12,18 +12,41 @@
 
 
  
-<%= form_for [@team, @post] do |f| %> 
- <%= f.text_field :post  %>
- <%= f.hidden_field :team_id, :value => @team_id %>
- <%= f.hidden_field :user_id, :value => @user_id %>
-  <%=f.submit "post"   %> 
+<%= form_with model: [@team, @post] do |f| %> 
+    <%= f.text_field :post  %>
+    <%= f.hidden_field :team_id, :value => @team_id %>
+    <%= f.hidden_field :user_id, :value => @user_id %>
+    <%=f.submit "post"   %> 
 <% end %>
 
 <div id="comment_div">  
     <% @posts.each do |post| %>
         <%= post.post%>  <%= post.user_id%> <%= post.team_id%>
         <br>
+
+        <%  %>
+         <% post.comments.each do |c| %>
+            <%= c.comment %>
+         <br>
+            
+            
+        <% end %>
+
+ 
+        <%  %>
+        <%= form_with model:  @comment do |f| %> 
+            <%= f.text_field :comment  %>
+            <%= f.hidden_field :post_id, :value => post.id %>
+            <%= f.hidden_field :user_id, :value => @user_id %>
+            <%=f.submit "reply"   %> 
+        <% end %>
+        
+         
+
     <% end %> 
+     
    
 </div>
  
+
+  

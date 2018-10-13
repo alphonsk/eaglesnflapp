@@ -28,18 +28,26 @@ class PostsController < ApplicationController
    
   # puts @current_user
   # @post = @team.new(post_params)
+
+  def show
+    @post = Post.find(params[:id])
+    @comment = Comment.new( :post => @post )
+  end
+  
   def create  
     @user = (current_user).id  
     puts params.inspect  
+     
     @post = Post.new(post_params)
 
   respond_to do |format|
     if @post.save
       format.html { redirect_to root_path, notice: 'Team was successfully created.' }
-      format.json { render :show, status: :created, location: @team }
+      format.json { render :show, status: :created, location: @post }
+      format.js {render inline: "location.reload();" }
     else
       format.html { render :new }
-      format.json { render json: @team.errors, status: :unprocessable_entity }
+      format.json { render json: @post.errors, status: :unprocessable_entity }
     end
   end
 end

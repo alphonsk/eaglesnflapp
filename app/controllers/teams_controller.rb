@@ -17,9 +17,15 @@ class TeamsController < ApplicationController
     @team =  Team.where(name: params[:id]).first
     @user_id = current_user.id
     
-# 
+    # 
     @post = Post.new
-    @posts =Post.all
+    @posts =Post.where(team_id: @team.id)
+
+    #
+    # @post = Post.find(params[:id])
+    @comment = Comment.new
+    @comments = Comment.all
+    
 
   end
 
@@ -92,6 +98,11 @@ class TeamsController < ApplicationController
     def post_params
       params.require(:post).permit(:post, :user_id, :team_id)
       
+    end
+
+    private
+    def comment_params
+      params.require(:comment).permit(:comment, :post_id, :user_id) 
     end
 end
 

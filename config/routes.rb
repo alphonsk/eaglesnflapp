@@ -4,6 +4,7 @@ Rails.application.routes.draw do
 
   resources :teams do
     post 'posts', to: 'posts#create'
+    # comment 'comments', to: 'comments#create'
     # resources :comments, only: [:create]
   end
 
