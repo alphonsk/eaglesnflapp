@@ -1,13 +1,43 @@
-<p id="notice"><%= notice %></p>
-
-<p>
-  <strong>Name:</strong>
-  <%= @team_name %>
-</p>
  
+ 
+    <br>
+    <br>
+   
+<%= image_tag(@team_obj.avatar, style:" width:40px" )%> 
+ 
+ <br><br>
 
-<%= link_to 'Edit', edit_team_path(@team) %> |
-<%= link_to 'Back', teams_path %>
+
+<div class="main">
+    <div class="showHeader"> 
+        <% @teams.each do |nflteam| %>
+        <table style="width:100%">
+            <% if nflteam.name == @team_name%>
+            <tr> 
+                <th rowspan="2" class="showAvatar">
+                    <%= image_tag(nflteam.avatar, style:" width:50px" )%>
+                </th>
+                <th colspan="2" class="showName">
+                    <%= @team_name %>
+                </th>
+                <td rowspan="2" class="showFollowAdd" >
+                 ++
+                </td>
+            </tr>
+            <tr>
+                <td class="showScore">
+                    4 - 0
+                </td>
+                <td rowspan="2" class="showFollowers">
+                     20000
+                </td> 
+            </tr>
+            <% end %>
+        </table>
+        <% end %>
+    </div>
+</div>
+
 
 
 
@@ -27,9 +57,7 @@
         <%  %>
          <% post.comments.each do |c| %>
             <%= c.comment %>
-         <br>
-            
-            
+            <br> 
         <% end %>
 
  

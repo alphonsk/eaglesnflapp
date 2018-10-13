@@ -7,6 +7,8 @@ class TeamsController < ApplicationController
   def index
     @teams = Team.all
     @team = Team.new
+    @user_id = current_user.id
+    @admin = 1
   end
 
   # GET /teams/1
@@ -26,6 +28,9 @@ class TeamsController < ApplicationController
     @comment = Comment.new
     @comments = Comment.all
     
+    #
+    @teams = Team.all
+    @team_obj =  (Team.where(name: params[:id]).first) 
 
   end
 
@@ -37,6 +42,10 @@ class TeamsController < ApplicationController
   # GET /teams/1/edit
   def edit 
     @team = Team.find(  params[:id])  
+  end
+
+  def myteams
+    @my_teams = Team.all
   end
 
   # POST /teams
@@ -92,7 +101,7 @@ class TeamsController < ApplicationController
 
     # Never trust parameters from the scary internet, only allow the white list through.
     def team_params
-      params.require(:team).permit(:name )
+      params.require(:team).permit(:name, :avatar )
     end
 
     def post_params

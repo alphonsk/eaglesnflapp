@@ -1,0 +1,89 @@
+
+ <div class="main">
+        <div class="mainHeader" >
+            <div class="allteams" >
+                <%= link_to 'All', teams_path %> 
+            </div> 
+            <div class="myteams" >
+                <% if current_user %>
+                  <%= link_to 'Myteams', myteams_path %> 
+                <% else %>
+                    <%= link_to 'Myteams', new_user_session_path %>
+                <% end %>
+                
+            </div>
+
+        </div>
+        <div class="mainBody" id="mainBody">
+            <table class="mainTable">
+                <tr >
+                    <th style="width:65%">Team</th> 
+                    <th style="text-align:right">Score</th>
+                    <th style="text-align:right">Remove</th>  
+                </tr> 
+            </table>
+           
+        </div>
+
+    <div class="teamBox" >
+ 
+
+        <% if @my_teams.first  %>
+        
+            <table style="width:100%">
+                <% @my_teams.each do |nflteam| %>
+                
+                    <tr> 
+                        <td rowspan="2" class="teamBoxAvatar">
+                           <%= link_to image_tag(nflteam.avatar, style:" width:50px" ) , team_path(nflteam.name) %>  
+                        </td>
+                        <td class="boxName">
+                            <p>
+                                <%= link_to nflteam.name , team_path(nflteam.name ) %>
+                            </p>
+                        </td> 
+                        <td rowspan="2" class="boxScore">
+                            4 - 0
+                        </td>
+                        <td class='add' id='add'  rowspan="2"  >
+                            <p class= <% nflteam.name %>, id='pp'>
+                                <% if current_user  %>
+                                <%= link_to "x", nflteam, id: 'delBttn', remote: true, method: :delete %>   
+                                <% else %>
+                                    
+                                <% end %> 
+                            </p>
+                        </td>        
+                        
+                    </tr>
+                    <tr>
+                        <th class="boxName">
+                            <%= nflteam.name %>
+                        </th> 
+                    </tr> 
+                <% end %>
+            </table>
+
+        <% else %>
+
+    <% end %>
+</div> 
+</div>    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+     
