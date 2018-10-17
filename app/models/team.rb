@@ -38,7 +38,7 @@ def self.get_api
 
   request = Net::HTTP::Get.new(uri.request_uri)
   # Request headers
-  request['Ocp-Apim-Subscription-Key'] = 'API4db9674f94364f849f2f49ad36511492'
+  request['Ocp-Apim-Subscription-Key'] = 'API4db9674f94364f849f22'
   # Request body
   request.body = "body"
 
