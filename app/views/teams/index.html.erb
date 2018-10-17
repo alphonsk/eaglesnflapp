@@ -1,80 +1,120 @@
-<p id="notice"><%= notice %></p>
-
-<h1>Teams</h1> 
-<br>
+ 
+ 
 <% if @user_id == @admin %>
   <%= link_to 'New Team', new_team_path %>
 <% end %>
 
-<br>
-<br>
+ 
+<div class="teamMain">
 
- <div class="main">
-        <div class="mainHeader" >
-            <div class="allteams" >
-                <%= link_to 'All', teams_path %> 
-            </div> 
-            <div class="myteams" >
-                <% if current_user %>
-                  <%= link_to 'Myteams', myteams_path %> 
-                <% else %>
-                    <%= link_to 'Myteams', new_user_session_path %>
-                <% end %>
-                
-            </div>
-
+     <div class="contentHeader">
+        <div class="myteamsWatchlist">
+        <h4>Watchlist<h4>
         </div>
+        <div class="myteamsAll">
+        <h4>All<h4>
+        </div>
+        <div class="myteamsTrending">
+        <h4>Trending<h4>
+        </div>
+    </div>
+       
  
- <div class="teamBox" >
-    <% if @teams.first  %>
-    
-        <table style="width:100%; border: solid">
-            <% @teams.each do |nflteam| %>
-            
-                <tr> 
-                    <td rowspan="2" class="teamBoxAvatar">
-                        <%= link_to image_tag(nflteam.avatar, style:" width:50px" ) , team_path(nflteam.name) %>
-                    </td>
-                    <td class="boxName">
-                        <p>
-                            <%= link_to nflteam.name , team_path(nflteam.name ) %>
-                        </p>
-                    </td> 
-                    <td rowspan="2" class="boxScore">
-                        4 - 0
-                    </td>
-                    <td class='add' id='add'  rowspan="2"  >
-                        <p class= <% nflteam.name %>, id='pp'>
-                            <% if current_user  %>
-                                <%= form_with(model: @team, scope: "team" ) do |form|  %>
-                                    <%=form.hidden_field :name, :value => nflteam.name  %>
-                                    <%=form.hidden_field :user_id, :value => @user_id %> 
-                                    <%= form.submit "+" ,id: 'addBttn'%>
-                                <% end %>
-                            <% else %>
-                                <%= link_to "+", new_user_session_path , id: 'addBttn'%>
-                            <% end %> 
-                        </p>
-                    </td>  
-                    <% if @user_id == @admin %>
-                        <td><%= link_to 'Edit', edit_team_path(nflteam) %></td>
-                        <td><%= link_to 'Destroy', team_path(nflteam), method: :delete, data: { confirm: 'Are you sure?' } %></td>
-                    <% end %>       
-                    
-                </tr>
+    <div class="teamMainBox" >
+        <div class="teamMainDiv" >
+        <% if @teams.first  %>
+        <% @teams.each do |nflteam| %> 
+
+            <div class="teamsDivTableWrap">
+                <table style="width:100%" class="mainTable"> 
+                    <tr> 
+                        <td rowspan="2" class="teamBoxAvatar">
+                            <%= link_to image_tag(nflteam.avatar, style:" width:90%" ) , team_path(nflteam.name) %>
+                        </td>
+                        <td class="boxName">
+                            <p>
+                                <%= link_to nflteam.name , team_path(nflteam.name ) %>
+                            </p>
+                        </td> 
+                        <td rowspan="2" class="boxScore">
+                            4 - 0
+                        </td>
+                        <td class='add' id='add'  rowspan="2"  > 
+                                <% if current_user  %>
+                                    <%= form_with(model: @userteam, scope: "userteam" ) do |form|  %>
+                                        <%=form.hidden_field :team_id, :value => nflteam.id  %>
+                                        <%=form.hidden_field :user_id, :value => current_user.id %> 
+                                        <%= form.submit "+" ,id: 'teamAddBttn'%>
+                                    <% end %>
+                                <% else %>
+                                    <%= link_to "+", new_user_session_path , id: 'teamAddBttn'%>
+                                <% end %>  
+                        </td> 
+
+                        <% if @user_id == @admin %>
+                            <td><%= link_to 'Edit', edit_team_path(nflteam) %></td>
+                            <td><%= link_to 'Destroy', team_path(nflteam), method: :delete, data: { confirm: 'Are you sure?' } %></td>
+                        <% end %>       
+                        
+                    </tr>
+                    <tr>
+                        <td class="boxName">
+                            "  @team.name   "
+                        </td> 
+                    </tr>
+                </table>
+            </div>
+        <% end %>
+        <% else %>
+        <% end %>
+        </div> 
+    </div> 
+
+
+<% "MY TEAMS "%>
+    <div class="myteamsTeamsDiv">  
+        <% @my_teams.each do |nflteam| %>
+     
+        <div class="myteamsDivTableWrap">
+            <table style="width:100%">
                 <tr>
-                    <th class="boxName">
-                        "  @team.name   "
-                    </th> 
-                </tr> 
-            <% end %>
-        </table>
+                        <td rowspan="2" class="teamBoxAvatar">
+                            <%= link_to image_tag(nflteam, style:" width:90%" ) , team_path(Team.find(nflteam.team_id).name) %>
+                        </td>
+                         
+                    </td>
+                        <td class="boxName">
+                            <p>
+                                <%=   Team.find(nflteam.team_id).name   %>
+                            </p>
+                        </td> 
+                        <td rowspan="2" class="boxScore">
+                            5 - 0
+                        </td>
+                        <td class='myTeamsDelete'  rowspan="2"  > 
+                                <% if current_user  %>
+                                <%= link_to 'x', nflteam, id: 'myTeamsdDelBttn', remote: true, method: :delete %>   
+                                <% else %> 
+                                <% end %> 
+                               
+                        </td>        
+                        
+                    </tr>
+                    <tr>
+                        <td class="boxName">
+                            <%= Team.find(nflteam.team_id).name %>
+                        </td> 
+                    </tr> 
+                
+                </table> 
+            </div> 
+        <% end %>
+    </div> 
 
-    <% else %>
 
- 
-    <% end %>
-</div>  
+
+
+
 </div> 
 
  

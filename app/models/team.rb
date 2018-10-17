@@ -1,7 +1,20 @@
 class Team < ApplicationRecord
+  require 'csv' 
+  require "http"
+  require "json" 
+  require 'uri' 
+  require 'openssl' 
+  require 'net/http'
+  require 'net/https' 
+  require 'active_support/core_ext/hash'
+
   has_many :posts, :dependent => :delete_all
   has_one_attached :avatar
+  has_many :userteams,  :dependent => :destroy 
+  has_many :users, through: :userteams, :dependent => :destroy 
 
+
+   
   # validate :correct_avatar_type 
 
 
@@ -15,4 +28,67 @@ class Team < ApplicationRecord
   #   end
   # end
 
+
+
+  
+# # fantasy data
+def self.get_api
+  # uri = URI('https://api.fantasydata.net/v3/nfl/scores/JSON/Schedules/2018')
+  uri = URI('https://api.fantasydata.net/v3/nfl/stats/JSON/Standings/2018')
+
+  request = Net::HTTP::Get.new(uri.request_uri)
+  # Request headers
+  request['Ocp-Apim-Subscription-Key'] = 'API4db9674f94364f849f2f49ad36511492'
+  # Request body
+  request.body = "body"
+
+  response = Net::HTTP.start(uri.host, uri.port, :use_ssl => uri.scheme == 'https') do |http|
+      http.request(request)
+  end
+
+# @all_api = response.body
+  man = response.body
+  nam = JSON.parse(man)
+  puts 99999999
+#  puts nam
+  # nam = [
+  #     {"GameKey":"201810126","SeasonType":1,"Season":2018,"Week":1, "StadiumDetails":{"StadiumID":18,"Name":"Lincoln Financial Field","City":"Philadelphia","State":"PA","Type":"Outdoor"}
+  # },
+  
+  # {"GameKey":"201810103","SeasonType":1,"Season":2018,"Week":1, "StadiumDetails":{"StadiumID":7,"Name":"M&T Bank Stadium","City":"Baltimore","State":"MD","Type":"Outdoor"}
+      
+  # }
+  # ] 
+
+   
+  # nam = {"SeasonType"=>1, "Season"=>2018, "Conference"=>"AFC", "Division"=>"East", "Team"=>"MIA", "Name"=>"Miami Dolphins", "Wins"=>3, "Losses"=>2, "Ties"=>0, "Percentage"=>0.7, "PointsFor"=>111, "PointsAgainst"=>131, "NetPoints"=>-18, "Touchdowns"=>14, "DivisionWins"=>1, "DivisionLosses"=>1, "ConferenceWins"=>3, "ConferenceLosses"=>2, "TeamID"=>19, "DivisionTies"=>0, "ConferenceTies"=>0}
+  # {"SeasonType"=>1, "Season"=>2018, "Conference"=>"AFC", "Division"=>"East", "Team"=>"NE", "Name"=>"New England Patriots", "Wins"=>3, "Losses"=>2, "Ties"=>0, "Percentage"=>0.7, "PointsFor"=>149, "PointsAgainst"=>121, "NetPoints"=>25, "Touchdowns"=>18, "DivisionWins"=>1, "DivisionLosses"=>0, "ConferenceWins"=>3, "ConferenceLosses"=>1, "TeamID"=>21, "DivisionTies"=>0, "ConferenceTies"=>0}
+  # {"SeasonType"=>1, "Season"=>2018, "Conference"=>"AFC", "Division"=>"East", "Team"=>"NYJ", "Name"=>"New York Jets", "Wins"=>2, "Losses"=>3, "Ties"=>0, "Percentage"=>0.5, "PointsFor"=>138, "PointsAgainst"=>118, "NetPoints"=>18, "Touchdowns"=>15, "DivisionWins"=>0, "DivisionLosses"=>1, "ConferenceWins"=>1, "ConferenceLosses"=>3, "TeamID"=>24, "DivisionTies"=>0, "ConferenceTies"=>0}
+  # {"SeasonType"=>1, "Season"=>2018, "Conference"=>"AFC", "Division"=>"East", "Team"=>"BUF", "Name"=>"Buffalo Bills", "Wins"=>2, "Losses"=>3, "Ties"=>0, "Percentage"=>0.5, "PointsFor"=>71, "PointsAgainst"=>132, "NetPoints"=>-55, "Touchdowns"=>6, "DivisionWins"=>0, "DivisionLosses"=>0, "ConferenceWins"=>1, "ConferenceLosses"=>2, "TeamID"=>4, "DivisionTies"=>0, "ConferenceTies"=>0}
+  # {"SeasonType"=>1, "Season"=>2018, "Conference"=>"AFC", "Division"=>"North", "Team"=>"CIN", "Name"=>"Cincinnati Bengals", "Wins"=>4, "Losses"=>1, "Ties"=>0, "Percentage"=>0.9, "PointsFor"=>172, "PointsAgainst"=>146, "NetPoints"=>23, "Touchdowns"=>21, "DivisionWins"=>1, "DivisionLosses"=>0, "ConferenceWins"=>3, "ConferenceLosses"=>0, "TeamID"=>7, "DivisionTies"=>0, "ConferenceTies"=>0}
+
 end
+   
+
+def self.get_stock_name
+  @stom = {"data"=>[{"ticker"=>"0769929D", "figi_ticker"=>"0769929D:UA", "figi"=>"BBG000QHR2P2"}, {"ticker"=>"1051400D", "figi_ticker"=>nil, "figi"=>"BBG006YWPLL1"}, {"ticker"=>"144ASERA", "figi_ticker"=>nil, "figi"=>"BBG0008C0WW8", "composite_figi"=>nil, "composite_figi_ticker"=>"144ASERA:US"}, {"ticker"=>"144ASERB", "figi_ticker"=>nil, "figi"=>"BBG0008C0WV9", "composite_figi"=>nil, "composite_figi_ticker"=>"144ASERB:US"}, {"ticker"=>"2274054Z", "figi_ticker"=>"2274054Z:UA", "figi"=>"BBG000TRGT25", "composite_figi"=>"BBG000TRGSS9"},]}
+  @stom['data']
+end
+
+
+def self.get_stock_name_and_price
+  get_stock_name
+end
+
+
+ 
+
+  
+
+  
+  
+
+end
+
+
+ 

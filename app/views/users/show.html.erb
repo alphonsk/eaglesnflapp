@@ -1,0 +1,57 @@
+ 
+
+<div class="userMain">
+    <div class="userPageShowHeader" class="w3-card-4"> 
+        
+        <table style="width:100%" class="userShowMain">
+             
+            <tr> 
+                <th rowspan="2" class="userPageAvatar">
+                   pix go here
+                </th>
+                <td colspan="2" class="userName"> 
+                       <%=User.email_user_name(@user.email) %> 
+                </td>
+                <td rowspan="2" class="showFollowAdd" >
+                   +
+              
+                </td>
+            </tr>
+            <tr>
+                <td class="showScore">
+                    4 - 0
+                </td>
+                <td rowspan="2" class="showFollowers">
+                     20000
+                </td> 
+            </tr> 
+        </table> 
+    </div> 
+
+ 
+    <% if @posts %> 
+        <div class="showUserPostMain">
+        <% @posts.each do |p| %> 
+        
+            <div class="showUserPost">
+                <div class="showUserPostspacer" >
+                    <div class="UserPostTeamAvatar">
+                    <%=  link_to  image_tag(Team.find(p.team_id).avatar, style:" width:80%" ), team_path(Team.find(p.team_id).name )   %>
+                    </div>
+                    
+                    <div class="UserPost">
+                    <%= p.post %> 
+                    
+                    </div> 
+                    <div class="UserPostLikes">
+                    <p> <%= time_ago_in_words(p.created_at) %>: Ago | 55 likes</p> 
+                    </div>
+                </div>       
+            </div>  
+        <% end %>
+        </div>
+        
+    <% end %>
+  
+
+</div>   

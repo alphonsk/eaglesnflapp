@@ -1,0 +1,23 @@
+
+
+#postCommentReplyInput, #postPageReplyComments {
+    display: none;
+}
+
+.allCommentDiv {
+    display: none;
+}
+
+.myteamsTeamsDiv, .teamMainMyteamsDiv {
+    display: none;
+}
+
+
+
+.teamMain, .myteamsMain {
+    /* border: solid green; */
+}
+
+.watchlistCommentDiv, .myteamsDiv, .teamMainDiv {
+    /* border: solid red; */
+}

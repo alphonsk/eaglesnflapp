@@ -1,29 +1,206 @@
-<p id="notice"><%= notice %></p>
+<div class="allPostMain"> 
 
-<h1>Posts</h1>
+    <div class="contentHeader">
+        <div class="myteamsWatchlist" id="postmyWatchlist">
+          <h4>Watchlist<h4>
+        </div>
+        <div class="myteamsAll" id="postAllTeams">
+          <h4>All<h4>
+        </div>
+        <div class="myteamsTrending" id="postTrendingTeams">
+          <h4>Trending<h4>
+        </div>
+    </div>
+ 
 
-<table>
-  <thead>
-    <tr>
-      <th>Post</th>
-      <th>Team</th>
-      <th>User</th>
-      <th colspan="3"></th>
-    </tr>
-  </thead>
+<div class="watchlistCommentDiv">  
+ <% @posts.each do |post| %>
+    <div class="eachPost"> 
+   
+        <ul class="eachPostUl">
+            <li class="userAvatarPost">
+                <div class="userAvatarTimeDiv">
+                    <table style="width:100%"> 
+                        <tr>
+                            <th rowspan="2" class="showUserAvatar">
+                                <%= image_tag(post.image, style:" width:100%" )%>
+                            </th>
+                            <td class="userName">
+                            <%= link_to User.post_user_name(post.user_id) , user_path(post.user_id) %>
+                                
+                            </td>
+                            <td rowspan="2" class="userPostFollow">
+                                <h1> + <h1>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td class="postTime" >
+                                <%= time_ago_in_words(post.created_at) %>: Ago
+                            </td> 
+                        </tr>
+                    </table>
+                </div>
+                <div class="imageVideoPost">
+                    <%= image_tag(post.image, style:" width:100%" )%>
+                </div>
+                <div class="textPost">
+                   <%=   %>:  <%= post.post %>     
+                </div>
+                <div class="likeCommentBar">
+                    <table style="width:100%">
+                        <tr> 
+                            <td class="postLikesicon"> 
+                                x
+                            </td>
+                            <td class="postLikes"> 
+                                5k likes
+                            </td>
+                            <td class="postComments" id="postComments">
+                                5 comments
+                            </td> 
+                            <td class="postReply" onclick="myshow(this)">
+                                reply
+                            </td>  
+                        </tr>  
+                    </table>
+                </div>
+ 
+               
+                <div class="commentReplyInput" id="postCommentReplyInput">
+                    <div class="replySpacer">
+                        <%= form_with model:  @comment do |f| %> 
+                            <%= f.text_field :comment, placeholder: "Write a comment...", id: "commentInput"  %>
+                            <%= f.hidden_field :post_id, :value => post.id %>
+                            <%= f.hidden_field :user_id, :value => @user_id %>
+                            <%=f.submit "reply"   %> 
+                        <% end %>
+                    </div>
+                </div>
+                <div class="postReplyComments" id="postPageReplyComments">
+                <div class="replyComments"  >
+                <% post.comments.each do |c| %>
+                    <table style="width:100%" >
+                        <tr>
+                            <th rowspan="2" class="replyAvatar">
+                                <%=   %> 
 
-  <tbody>
-    <% @posts.each do |post| %>
-      <tr>
-        <td><%= post.post %></td> 
-        <td><%= link_to 'Show', post %></td>
-        <td><%= link_to 'Edit', edit_post_path(post) %></td>
-        <td><%= link_to 'Destroy', post, method: :delete, data: { confirm: 'Are you sure?' } %></td>
-      </tr>
+                            </th>
+                            <td colspan="2" class="replyText" >
+                                <%= c.comment %>
+                            </td> 
+                        </tr>
+                        <tr>
+                            <td class="replyTextTime">
+                                <%= time_ago_in_words(c.created_at) %>: Ago | 55 likes
+                            </td>
+                            <td class="replyTextLikes">
+                                 
+                            </td> 
+                        </tr>
+                    </table>
+                    <% end %>
+                    </div>
+                </div>
+                </li>    
+            </ul>
+            
+        </div>
     <% end %>
-  </tbody>
-</table>
+</div> 
 
-<br>
 
-<%= link_to 'New Post', new_post_path %>
+
+<div class="allCommentDiv">  
+ <% @posts.each do |post| %>
+    <div class="eachPost"> 
+   
+        <ul class="eachPostUl">
+            <li class="userAvatarPost">
+                <div class="userAvatarTimeDiv">
+                    <table style="width:100%"> 
+                        <tr>
+                            <th rowspan="2" class="showUserAvatar">
+                                <%= image_tag(post.image, style:" width:100%" )%>
+                            </th>
+                            <td class="userName">
+                            <%= link_to User.post_user_name(post.user_id) , user_path(post.user_id) %>
+                                
+                            </td>
+                            <td rowspan="2" class="userPostFollow">
+                                <h1> + <h1>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td class="postTime" >
+                                <%= time_ago_in_words(post.created_at) %>: Ago
+                            </td> 
+                        </tr>
+                    </table>
+                </div>
+                <div class="imageVideoPost">
+                    <%= image_tag(post.image, style:" width:100%" )%>
+                </div>
+                <div class="textPost">
+                   <%=   %>:  <%= post.post %>     
+                </div>
+                <div class="likeCommentBar">
+                    <table style="width:100%">
+                        <tr> 
+                            <td class="postLikesicon"> 
+                                x
+                            </td>
+                            <td class="postLikes"> 
+                                5k likes
+                            </td>
+                            <td class="postComments" id="postComments">
+                                5 comments
+                            </td> 
+                            <td class="postReply" onclick="myshow(this)">
+                                reply
+                            </td>  
+                        </tr>  
+                    </table>
+                </div>
+
+               
+                <div class="commentReplyInput" id="postCommentReplyInput">
+                    <div class="replySpacer">
+                        <%= form_with model:  @comment do |f| %> 
+                            <%= f.text_field :comment, placeholder: "Write a comment...", id: "commentInput"  %>
+                            <%= f.hidden_field :post_id, :value => post.id %>
+                            <%= f.hidden_field :user_id, :value => @user_id %>
+                            <%=f.submit "reply"   %> 
+                        <% end %>
+                    </div>
+                </div>
+                <div class="postReplyComments" id="postPageReplyComments">
+                <div class="replyComments"  >
+                <% post.comments.each do |c| %>
+                    <table style="width:100%" >
+                        <tr>
+                            <th rowspan="2" class="replyAvatar">
+                                <%=   %> 
+
+                            </th>
+                            <td colspan="2" class="replyText" >
+                                <%= c.comment %>
+                            </td> 
+                        </tr>
+                        <tr>
+                            <td class="replyTextTime">
+                                <%= time_ago_in_words(c.created_at) %>: Ago | 55 likes
+                            </td>
+                            <td class="replyTextLikes">
+                                 
+                            </td> 
+                        </tr>
+                    </table>
+                    <% end %>
+                    </div>
+                </div>
+                </li>    
+            </ul>
+            
+        </div>
+    <% end %>
+</div> 

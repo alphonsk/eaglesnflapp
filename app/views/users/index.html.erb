@@ -1,0 +1,32 @@
+ 
+<div class="userMainPage">
+    <% @users.each do |u| %>   
+    <div class="usersBox"> 
+        <div class="userAvatar">
+            <table style="width:100%"> 
+                <tr> 
+                    <td>
+                    </td>
+                </tr>
+            </table>
+        </div>
+        <div class="userLikeFollow">
+            <table style="width:100%">
+                <tr>
+                    <td colspan="2" style="text-align:left"> 
+                        <%= link_to User.email_user_name(u.email), user_path(u.id) %>
+                    </td>
+                    <td rowspan="2" class="userAdd"> + </td>
+                </tr>
+                <tr>
+                    <td><%=Post.where(user_id: u.id).count%></td>
+                    <td>57 Following</td>
+                </tr>
+            </table>
+        </div> 
+    </div> 
+    <% end %> 
+
+</div>    
+
+ 

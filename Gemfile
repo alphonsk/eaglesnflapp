@@ -4,6 +4,12 @@ git_source(:github) { |repo| "https://github.com/#{repo}.git" }
 ruby '2.3.7'
 gem 'devise', '~> 4.5'
 gem 'jquery-rails', '~> 4.3', '>= 4.3.3'
+gem 'pg'
+gem 'jquery', '~> 0.0.1'
+gem 'jquery-rails', '~> 4.3', '>= 4.3.3'
+gem "http"
+gem 'json', '~> 2.1'
+gem 'nokogiri', '~> 1.8', '>= 1.8.5'
 
 # Bundle edge Rails instead: gem 'rails', github: 'rails/rails'
 gem 'rails', '~> 5.2.1'

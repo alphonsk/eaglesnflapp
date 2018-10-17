@@ -1,15 +1,31 @@
 class TeamsController < ApplicationController
   before_action :set_team, only: [:show, :edit, :update, :destroy]
-  before_action :authenticate_user!
+  # before_action :authenticate_user!
 
   # GET /teams
   # GET /teams.json
   def index
     @teams = Team.all
-    @team = Team.new
-    @user_id = current_user.id
+    @team = Team.new 
     @admin = 1
+    if current_user
+      @user_id = current_user.id
+    end
+
+    # MYTEAMS
+    if current_user
+      @user_id = current_user.id
+    end 
+    @all_teams = Team.all
+    @my_teams = Userteam.where(user_id: @user_id)
+    
+ 
+    @all_api = Team.get_api 
+    puts @all_api
   end
+
+
+
 
   # GET /teams/1
   # GET /teams/1.json
@@ -17,11 +33,15 @@ class TeamsController < ApplicationController
     @team_name = params[:id]
     @team_id =  (Team.where(name: params[:id]).first).id
     @team =  Team.where(name: params[:id]).first
-    @user_id = current_user.id
+    if current_user
+      @user_id = current_user.id
+    end
     
+    
+
     # 
     @post = Post.new
-    @posts =Post.where(team_id: @team.id)
+    @posts =Post.where(team_id: @team.id).reverse
 
     #
     # @post = Post.find(params[:id])
@@ -44,8 +64,27 @@ class TeamsController < ApplicationController
     @team = Team.find(  params[:id])  
   end
 
+
+
+  
   def myteams
-    @my_teams = Team.all
+    if current_user
+      @user_id = current_user.id
+    end 
+    @all_teams = Team.all
+    @my_teams = Userteam.where(user_id: @user_id)
+    # @my_teams = Team.where(user_id: @user_id)
+
+
+    #  INDEX
+    @teams = Team.all
+    @team = Team.new 
+    @admin = 1
+    if current_user
+      @user_id = current_user.id
+    end
+
+
   end
 
   # POST /teams
@@ -84,9 +123,10 @@ class TeamsController < ApplicationController
   # DELETE /teams/1
   # DELETE /teams/1.json
   def destroy
-    @team = Team.find(params[:id] )
-    puts 9999
-    puts @team 
+    puts 22222
+    @team = Team.find(params[:id])
+    puts @team
+    puts 9999 
     @team.destroy
     respond_to do |format|
       format.html { redirect_to teams_url, notice: 'Team was successfully destroyed.' }
@@ -121,3 +161,15 @@ end
 #   <%= f.text_area :post, size: "40x5" %>
 #   <%= f.submit "post" %>
 # <% end %>
+
+
+
+# <%= link_to image_tag(nflteam.team.avatar ) , team_path(nflteam.team.name) %> 
+
+
+# <% @my_teams.each do |item| %>
+#   <div>
+#     <%= image_tag(Team.find(item.team_id) )  %> <%= Team.find(item.team_id).name %>   <%= User.find(item.user_id).email %>
+#     </div>
+#     <br/>
+#   <% end %>

@@ -1,0 +1,279 @@
+
+/* SHOW PAGE  */
+table, th, tr, td {
+    /* border: solid black; */
+}
+
+
+.showMain {
+    /* border: solid red; */
+}
+ 
+
+.showHeaderCard {
+background-color: #ffffff;
+margin: 15px auto;
+margin-bottom: 5px;
+}
+
+.teamShowMainTable { 
+    /* padding: 3px; */
+}
+
+
+.showAvatar {
+    width: 30%;
+    padding: 10px;
+    /* border: SOLID RED;  */
+}
+
+
+.showNameTd {
+    /* padding: 5px; */
+    text-align: left;
+    font-size: 22px;
+} 
+
+
+.showScoreTd, .showFollowersTd {
+    /* text-align: center; */
+    
+}
+
+
+.showFollowAdd {
+    width: 20%;
+    text-align: center;
+    /* border: SOLID RED;  */
+}
+
+
+
+/* FORM */
+.postDiv {
+    width: 100%;
+    background-color: #ffffff; 
+    padding-top: 5px;  
+    margin: 10px 0;
+}
+
+
+.showTextArea { 
+    width: 90%;
+    margin: 3px auto;
+}
+
+#postArea { 
+    width: 100%;
+    height: 40px;
+    padding-left: 10px; 
+    margin-left: auto;
+    margin-right: auto;
+    border-radius: 15px;
+    border: solid 1px #eff1f3;
+    background-color: #eff1f3;
+       
+}
+
+#postArea a {
+    text-decoration-style: none;
+    border: white; 
+}
+
+.imgBtn {
+    display: block;
+    width: 90%;
+    height: 40px;
+    margin: 5px auto;
+    padding: 3px 30px; 
+}
+#post_image {
+    width: 83px;
+    float: left;
+    display: inline-block; 
+}
+.postBtn {
+    width: 20%;
+    margin-left: 90px;
+    float: left;
+    display: inline-block;
+    /* border: SOLID RED;  */
+}
+
+
+
+
+
+/* EACH POST */
+table, th, tr, td {
+    /* border: solid black; */
+}
+
+li {
+    list-style-type: none;
+}
+
+
+.comment_div {
+    width: 100%;
+    margin-left: auto;
+    margin-right: auto; 
+    margin-bottom: 70px;   
+}
+
+
+/* not sure */
+.eachPost { 
+    width: 100%; 
+     /* border: SOLID RED;  */
+    margin: 10px 0;
+}
+
+.eachPostUl {
+    padding-inline-start: 0px
+}
+
+
+.userAvatarTimeDiv {
+    margin: 5px 0;
+    background-color: #ffffff; 
+}
+
+
+.showUserAvatar {
+    width: 15%;   
+}
+
+
+.showUserAvatar img {
+    border-radius: 50%;
+    
+}
+
+
+.userName {
+    padding-left: 10px;
+    text-align: left; 
+} 
+
+
+.userPostFollow {
+    text-align: center;
+    width: 20%;  
+}
+
+
+.postTime {
+    padding-left: 10px;
+    font-size: 13px; 
+}
+
+
+.imageVideoPost { 
+    width: 100%;
+    margin: 0;
+}
+
+
+.textPost {  
+    background-color: #ffffff; 
+    width: 100%;
+    margin: 0;
+    padding: 14px; 
+}
+
+
+.textPost a {
+    color: #00796b;
+}
+
+
+
+.likeCommentBar { 
+    background-color: #ffffff; 
+    border-top: solid 1px #eff1f3;
+    border-bottom: solid 1px #eff1f3;
+    width: 100%; 
+    margin: 0;
+    padding: 5px;
+    text-align: center;
+}
+
+.postLikes {
+
+}
+
+.postComments {
+
+}
+
+.postReply {
+
+}
+
+
+.commentReplyInput { 
+    padding: 15px;
+    margin: 1px 0;
+    background-color: #ffffff;   
+}
+
+
+.replySpacer {
+    width: 90%;
+    margin-left: 10%;
+    border: solid #ffffff;
+}
+
+#commentInput {
+    width: 74%; 
+    padding-left: 10px;
+    background-color: #eff1f3; 
+    border: solid  #eff1f3; 
+    border-radius: 15px;
+}
+
+.postReplyComments {  
+    padding: 10px;
+    border: solid #ffffff;
+    background-color: #ffffff;
+}
+
+
+.replyComments {
+    width: 90%;
+    margin-left: 10%;
+}
+
+.replyAvatar {
+    width: 50px;
+    vertical-align: top; 
+}
+
+.replyAvatar img {
+    border-radius: 50%;
+}
+
+.replyText {
+    border-radius: 25px;
+    padding: 10px;
+    font-size: 13px;
+    background-color: #eff1f3; 
+    border: solid  #eff1f3; 
+}
+
+.replyTextTime {
+    padding-left: 10px;
+    font-size: 12px;
+    text-align: left;
+}
+
+.replyTextLikes {
+    padding-left: 10px;
+    font-size: 13px;
+    text-align: left;
+}
+
+
+
+

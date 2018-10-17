@@ -2,11 +2,11 @@ class PostsController < ApplicationController
   before_action :set_post, only: [:show, :edit, :update, :destroy]
   before_action :authenticate_user!
 
-#   # GET /posts
-#   # GET /posts.json
-#   def index
-#     @posts = Post.all
-#   end
+  # GET /posts
+  # GET /posts.json
+  def index
+    @posts = Post.all.reverse
+  end
 
 #   # GET /posts/1
 #   # GET /posts/1.json
@@ -21,6 +21,7 @@ class PostsController < ApplicationController
 #   # GET /posts/1/edit
 #   def edit
 #   end
+
 
   # POST /posts
   # POST /posts.json
@@ -54,7 +55,7 @@ end
 
 private
   def post_params
-    params.require(:post).permit(:post, :team_id, :user_id) 
+    params.require(:post).permit(:post, :team_id, :user_id, :image ) 
   end
 end
 
@@ -96,3 +97,41 @@ end
 #     end
 # end
 
+# <%= image_tag(post.image, style:" width:40px" )%>
+
+
+
+
+#    POST PAGE START
+
+# <p id="notice"><%= notice %></p>
+
+# <h1>Posts</h1>
+
+# <table>
+#   <thead>
+#     <tr>
+#       <th>Post</th>
+#       <th>Team</th>
+#       <th>User</th>
+#       <th colspan="3"></th>
+#     </tr>
+#   </thead>
+
+#   <tbody>
+#     <% @posts.each do |post| %>
+#       <tr>
+#         <td><%= post.post %></td> 
+#         <td><%= link_to 'Show', post %></td>
+#         <td><%= link_to 'Edit', edit_post_path(post) %></td>
+#         <td><%= link_to 'Destroy', post, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+#       </tr>
+#     <% end %>
+#   </tbody>
+# </table>
+
+# <br>
+
+# <%= link_to 'New Post', new_post_path %>
+
+#    POST PAGE END

@@ -1,34 +1,34 @@
  
- 
-    <br>
-    <br>
-   
-<%= image_tag(@team_obj.avatar, style:" width:40px" )%> 
- 
- <br><br>
-
-
-<div class="main">
-    <div class="showHeader"> 
+<div class="showMain">
+    <div class="showHeaderCard" class="w3-card-4"> 
         <% @teams.each do |nflteam| %>
-        <table style="width:100%">
+        <table style="width:100%" class="teamShowMainTable">
             <% if nflteam.name == @team_name%>
             <tr> 
                 <th rowspan="2" class="showAvatar">
-                    <%= image_tag(nflteam.avatar, style:" width:50px" )%>
+                    <%= image_tag(nflteam.avatar, style:" width:100px" )%>
                 </th>
-                <th colspan="2" class="showName">
-                    <%= @team_name %>
-                </th>
+                <td colspan="2" class="showNameTd">
+                    <%= nflteam.name %>
+                </td>
                 <td rowspan="2" class="showFollowAdd" >
-                 ++
+                  
+                  <% if current_user  %>
+                                <%= form_with(model: @userteam, scope: "userteam" ) do |form|  %>
+                                    <%=form.hidden_field :team_id, :value => nflteam.id  %>
+                                    <%=form.hidden_field :user_id, :value => current_user.id %> 
+                                    <%= form.submit "+" ,id: 'addBttn'%>
+                                <% end %>
+                            <% else %>
+                                <%= link_to "+", new_user_session_path , id: 'addBttn'%>
+                            <% end %> 
                 </td>
             </tr>
             <tr>
-                <td class="showScore">
+                <td class="showScoreTd">
                     4 - 0
                 </td>
-                <td rowspan="2" class="showFollowers">
+                <td rowspan="2" class="showFollowersTd">
                      20000
                 </td> 
             </tr>
@@ -36,45 +36,130 @@
         </table>
         <% end %>
     </div>
-</div>
-
-
-
-
  
-<%= form_with model: [@team, @post] do |f| %> 
-    <%= f.text_field :post  %>
-    <%= f.hidden_field :team_id, :value => @team_id %>
-    <%= f.hidden_field :user_id, :value => @user_id %>
-    <%=f.submit "post"   %> 
+ 
+
+
+<div class="postDiv"> 
+    <%= form_with model: [@team, @post] do |f| %> 
+    <div class="showTextArea">
+        <%= f.text_field :post, placeholder: "How are the doing?", id: "postArea" %>
+        <%= f.hidden_field :team_id, :value => @team_id %>
+        <%= f.hidden_field :user_id, :value => @user_id %>     
+    </div> 
+    <div class="imgBtn">
+        <div class="postImage">
+            <%= f.file_field :image %>
+        </div> 
+        <div class="postBtn">
+            <%=f.submit "post"   %> 
+        </div> 
+    </div> 
+</div>    
+  
 <% end %>
 
-<div id="comment_div">  
-    <% @posts.each do |post| %>
-        <%= post.post%>  <%= post.user_id%> <%= post.team_id%>
-        <br>
+<div class="comment_div"> 
+ <% @posts.each do |post| %>
+    <div class="eachPost"> 
+   
+        <ul class="eachPostUl">
+            <li class="userAvatarPost">
+                <div class="userAvatarTimeDiv">
+                    <table style="width:100%"> 
+                        <tr>
+                            <th rowspan="2" class="showUserAvatar">
+                                <%= image_tag(post.image, style:" width:100%" )%>
+                            </th>
+                            <td class="userName">
+                                <%= User.post_user_name(post.user_id)  %>
+                            </td>
+                            <td rowspan="2" class="userPostFollow">
+                                <h1> + <h1>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td class="postTime" >
+                                <%= time_ago_in_words(post.created_at) %>: Ago
+                            </td> 
+                        </tr>
+                    </table>
+                </div>
+                <div class="imageVideoPost">
+                    <%= image_tag(post.image, style:" width:100%" )%>
+                </div>
+                <div class="textPost">
+                   <%= link_to @team_name, team_path(@team_name) %>:  <%= post.post %>     
+                </div>
+                <div class="likeCommentBar">
+                    <table style="width:100%">
+                        <tr> 
+                            <td class="postLikes"> 
+                                5k likes
+                            </td>
+                            <td class="PostComments">
+                                5 comments
+                            </td> 
+                            <td class="PostReply">
+                                reply
+                            </td>  
+                        </tr>  
+                    </table>
+                </div>
 
-        <%  %>
-         <% post.comments.each do |c| %>
-            <%= c.comment %>
-            <br> 
-        <% end %>
+               
+                <div class="commentReplyInput">
+                    <div class="replySpacer">
+                        <%= form_with model:  @comment do |f| %> 
+                            <%= f.text_field :comment, placeholder: "Write a comment...", id: "commentInput"  %>
+                            <%= f.hidden_field :post_id, :value => post.id %>
+                            <%= f.hidden_field :user_id, :value => @user_id %>
+                            <%=f.submit "reply"   %> 
+                        <% end %>
+                    </div>
+                </div>
+                <div class="postReplyComments">
+                <div class="ReplyComments">
+                <% post.comments.each do |c| %>
+                    <table style="width:100%" >
+                        <tr>
+                            <th rowspan="2" class="replyAvatar">
+                                <%= image_tag(@team_obj.avatar, style:" width:100%" )%> 
 
- 
-        <%  %>
-        <%= form_with model:  @comment do |f| %> 
-            <%= f.text_field :comment  %>
-            <%= f.hidden_field :post_id, :value => post.id %>
-            <%= f.hidden_field :user_id, :value => @user_id %>
-            <%=f.submit "reply"   %> 
-        <% end %>
+                            </th>
+                            <td colspan="2" class="replyText" >
+                                <%= c.comment %>
+                            </td> 
+                        </tr>
+                        <tr>
+                            <td class="replyTextTime">
+                                <%= time_ago_in_words(c.created_at) %>: Ago | 55 likes
+                            </td>
+                            <td class="replyTextLikes">
+                                 
+                            </td> 
+                        </tr>
+                    </table>
+                    <% end %>
+                    </div>
+                </div>
+            </li>    
+        </ul>
         
-         
+     </div>
+<% end %>
 
-    <% end %> 
+
      
+
+  
+    
+  
    
 </div>
+
+   
+  
  
 
   

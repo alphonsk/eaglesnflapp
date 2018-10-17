@@ -1,0 +1,137 @@
+
+
+/* TEAM PAGE */
+table td {
+    /* border: solid  #ffffff;  */
+    /* border: solid black; */
+}
+
+.myteamsMain { 
+    width: 100%;  
+}
+
+.contentHeader {
+    width: 90%;
+    height: 45px;
+    color: black;
+    /* background-color: #00796b; */  
+    margin: 15px auto;
+    text-align: center;
+    padding: 1px;
+
+}
+
+
+.myteamsWatchlist {
+    width: 32%;
+    display: inline-block;
+    height: 45px;
+    border: solid 1px #00796b;
+    background-color: #ffffff;
+}
+
+
+.myteamsAll {
+    width: 32%;
+    display: inline-block;
+    height: 45px;
+    border: solid 1px #00796b;
+    background-color: #ffffff;
+}
+
+.myteamsTrending {
+    width: 32%;
+    display: inline-block;
+    height: 45px;
+    border: solid 1px #00796b;
+    background-color: #ffffff;
+}
+
+
+.myteamsDiv {  
+    padding: 10px 0;
+}
+
+.myteamsDivTableWrap {
+    /* border: solid 1px #00796b; */
+    width: 100%; 
+    color: black;
+    padding: 4px;  
+    margin: 3px auto;
+    background-color: #ffffff;
+    /* border: solid 1px #ffffff; */
+
+}
+
+
+
+.teamBoxAvatar {
+    width: 20%; 
+}
+
+.teamBoxAvatar img {
+    /* border-radius: 50%; */
+    width: 70%;
+}
+
+.boxName {
+    text-align: left; 
+}
+
+.boxScore {
+    text-align: center;
+    width: 18%;
+}
+
+#add {
+    text-align: center; 
+}
+
+
+.myTeamsDelete {
+    width: 10%;
+    text-align: center;
+    font-size: 28px;
+    color: black;
+}
+
+
+#myTeamsdDelBttn {
+    font-size: 28px;
+    -webkit-appearance: none; 
+    border: solid #ffffff; 
+    background-color: #ffffff;
+}
+
+#myTeamsdDelBttn:hover { 
+    color: #8BC34A;
+    width: 100%;
+    text-decoration-line: none;    
+}
+
+
+ 
+ 
+
+
+
+
+
+
+
+
+
+
+
+
+ 
+
+
+
+
+
+
+
+
+
+

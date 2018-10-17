@@ -7,14 +7,77 @@
 
     <%= stylesheet_link_tag    'application', media: 'all', 'data-turbolinks-track': 'reload' %>
     <%= javascript_include_tag 'application', 'data-turbolinks-track': 'reload' %>
+    <meta name = "viewport" content="width = device-width, initial-scale = 1">
+    <link rel = "stylesheet" href = "https://www.w3schools.com/lib/w3.css">
+    <script>
+      // Add active class to the current button (highlight it)
+      var header = document.getElementById("botomNav");
+      var btns = header.getElementsByClassName("btn");
+      for (var i = 0; i < btns.length; i++) {
+        btns[i].addEventListener("click", function() {
+          var current = document.getElementsByClassName("active");
+          current[0].className = current[0].className.replace(" active", "");
+          this.className += " active";
+        });
+      }
+    </script>
   </head>
 
-  <body>
-    <%= link_to 'h', root_path %>
-    <%= link_to 'su', new_user_registration_path %>
-    <%= link_to 'si', new_user_session_path %>
-    <%= link_to 'lo', destroy_user_session_path, method: :delete%>
-    
-    <%= yield %>
+  <body> 
+
+  <div class="NavBar">
+      <div class="navLogo">  
+          <h4><b><%= link_to 'myNfl', teams_path %></b></h4>
+        </div>
+        <div class="navSearch">
+          <div class="inp"> 
+            <input type="text" id="myText" placeholder="Search..">
+          </div>
+          <div class="hb"  >
+          </div>
+        </div> 
+
+    </div>
+
+   
+
+    <%= yield %> 
+
+
+  <% if current_user %>
+    <div class="BttmNavBar" id="myNavbar">  
+      <div id="myDIV">
+        <a href="/posts" class="btn">Home</a>
+        <a href="/teams" class="btn active">Teams</a> 
+        <a href="/myteams" class="btn">Myteams</a> 
+        <a href="/users" class="btn">Users</a>
+         
+        <%= link_to 'LogOut', destroy_user_session_path, :method => :delete, class: "btn"%>   
+      </div>
+    </div> 
+  <% else %>
+    <div class="BttmNavBar" id="myNavbar">
+      <div id="mySignInDIV">
+        <%= link_to 'Sign Up', new_user_registration_path %>
+        &nbsp;&nbsp;&nbsp;
+        <%= link_to 'Sign In', new_user_session_path %>    
+      </div>
+    </div>
+  <% end %>
+<script>
+// Add active class to the current button (highlight it)
+var header = document.getElementById("myDIV");
+var btns = header.getElementsByClassName("btn");
+for (var i = 0; i < btns.length; i++) {
+  btns[i].addEventListener("click", function() {
+    var current = document.getElementsByClassName("active");
+    current[0].className = current[0].className.replace(" active", "");
+    this.className += " active";
+  });
+}
+
+</script>
+ 
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>  
   </body>
 </html>

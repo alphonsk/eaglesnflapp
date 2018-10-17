@@ -1,0 +1,65 @@
+
+
+/*  user Show Page */
+
+.userPageShowHeader { 
+    margin: 15px auto;
+    border: solid #ffffff;
+    background-color: #ffffff;
+    padding: 5px 0;
+}
+
+
+.showUserPostMain { 
+    margin: 5px 0; 
+}
+
+
+.showUserPost {
+    border: solid #ffffff;
+    /* margin-left: 10px; */
+    margin: 5px 0;
+    padding: 10px 0;
+    background-color: #ffffff;
+}
+
+
+.showUserPostspacer {
+    width: 90%;
+    margin-left: 10%;
+}
+
+.UserPostTeamAvatar {
+    width: 20%; 
+    padding-left: 10px;
+    display: inline-block;
+    /* border: solid red; */
+}
+
+.UserPostTeamAvatar img {
+    border-radius: 50%;
+}
+
+.UserPost {
+    vertical-align: top;
+    width: 74%;
+    /* border: solid black; */
+    padding-left: 10px;
+    display: inline-block;
+    /* margin: 15px 0;  */
+    border-radius:  25px;
+    padding: 10px;
+    font-size: 13px;
+    background-color: #eff1f3; 
+}
+
+
+.UserPostLikes {
+    /* width: 100%; */
+    display: block;
+    /* float: right; */
+    /* border: solid black; */
+    margin-left: 25%;
+
+    font-size: 13px;
+}
