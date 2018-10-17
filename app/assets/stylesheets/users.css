@@ -12,6 +12,7 @@
 .userAvatar {
     display: inline-block; 
     width: 20%;
+    height: 70px;
     margin: 5px 0; 
     border: solid #ffffff;
     background-color: #ffffff; 
@@ -22,6 +23,14 @@
     border-radius: 50%;
     vertical-align: top;
     border: solid #ffffff;
+}
+
+.indexTeamBoxAvatar{
+    width: 20%
+}
+
+.myTeamBoxAvatar {
+    width: 20%;
 }
 
 

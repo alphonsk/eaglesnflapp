@@ -1,11 +1,11 @@
 
 
 #postCommentReplyInput, #postPageReplyComments {
-    display: none;
+    /* display: none; */
 }
 
 .allCommentDiv {
-    display: none;
+    /* display: none; */
 }
 
 .myteamsTeamsDiv, .teamMainMyteamsDiv {

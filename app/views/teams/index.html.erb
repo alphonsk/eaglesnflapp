@@ -28,7 +28,7 @@
             <div class="teamsDivTableWrap">
                 <table style="width:100%" class="mainTable"> 
                     <tr> 
-                        <td rowspan="2" class="teamBoxAvatar">
+                        <td rowspan="2" class="indexTeamBoxAvatar">
                             <%= link_to image_tag(nflteam.avatar, style:" width:90%" ) , team_path(nflteam.name) %>
                         </td>
                         <td class="boxName">
@@ -37,7 +37,7 @@
                             </p>
                         </td> 
                         <td rowspan="2" class="boxScore">
-                            4 - 0
+                            <%= nflteam.win%> - <%= nflteam.loss%>
                         </td>
                         <td class='add' id='add'  rowspan="2"  > 
                                 <% if current_user  %>
@@ -59,7 +59,7 @@
                     </tr>
                     <tr>
                         <td class="boxName">
-                            "  @team.name   "
+                            <%= nflteam.abr_name%>
                         </td> 
                     </tr>
                 </table>
@@ -118,7 +118,8 @@
 </div> 
 
  
-
+ 
+ 
  
 
  

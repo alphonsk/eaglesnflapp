@@ -5,7 +5,7 @@ class TeamsController < ApplicationController
   # GET /teams
   # GET /teams.json
   def index
-    @teams = Team.all
+    @teams = Team.all.order('name ASC')
     @team = Team.new 
     @admin = 1
     if current_user
@@ -20,8 +20,18 @@ class TeamsController < ApplicationController
     @my_teams = Userteam.where(user_id: @user_id)
     
  
-    @all_api = Team.get_api 
-    puts @all_api
+    # @all_api = Team.get_api 
+    # puts @all_api
+    # @rowarraydisp = CSV.read("input.csv") 
+    # @man = Team.read_file
+    # puts 2222
+    # # puts @rowarraydisp
+    # puts 3333
+
+    # @met =Team.meth 
+    puts 888888
+    # puts @rowarraydisp 
+    puts 3333
   end
 
 
@@ -71,7 +81,7 @@ class TeamsController < ApplicationController
     if current_user
       @user_id = current_user.id
     end 
-    @all_teams = Team.all
+    # @all_teams = Team.all
     @my_teams = Userteam.where(user_id: @user_id)
     # @my_teams = Team.where(user_id: @user_id)
 
@@ -141,7 +151,7 @@ class TeamsController < ApplicationController
 
     # Never trust parameters from the scary internet, only allow the white list through.
     def team_params
-      params.require(:team).permit(:name, :avatar )
+      params.require(:team).permit(:name, :avatar, :win ,:loss, :abr_name )
     end
 
     def post_params
@@ -151,7 +161,7 @@ class TeamsController < ApplicationController
 
     private
     def comment_params
-      params.require(:comment).permit(:comment, :post_id, :user_id) 
+      params.require(:comment).permit(:comment, :post_id, :user_id ) 
     end
 end
 
@@ -173,3 +183,11 @@ end
 #     </div>
 #     <br/>
 #   <% end %>
+
+
+
+# ///
+# <% @rowarraydisp.each do |item| %>
+#   <%= item[0]%> <%= item[1]%> <%= item[2]%> <%= item[3]%>
+#   <br/>
+# <% end %>

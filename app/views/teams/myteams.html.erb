@@ -1,6 +1,7 @@
 
 
 
+
 <div class="myteamsMain">
 
     <div class="contentHeader">
@@ -22,8 +23,8 @@
         <div class="myteamsDivTableWrap">
             <table style="width:100%">
                 <tr>
-                        <td rowspan="2" class="teamBoxAvatar">
-                            <%= link_to image_tag(nflteam, style:" width:90%" ) , team_path(Team.find(nflteam.team_id).name) %>
+                        <td rowspan="2" class="myTeamBoxAvatar">
+                            <%= link_to image_tag(Team.find(nflteam.team_id).avatar, style:" width:90%" ) , team_path(Team.find(nflteam.team_id).name) %>
                         </td>
                          
                     </td>
@@ -33,7 +34,7 @@
                             </p>
                         </td> 
                         <td rowspan="2" class="boxScore">
-                            5 - 0
+                            <%=Team.find(nflteam.team_id).win %> - <%=Team.find(nflteam.team_id).loss %> 
                         </td>
                         <td class='myTeamsDelete'  rowspan="2"  > 
                                 <% if current_user  %>
@@ -46,7 +47,7 @@
                     </tr>
                     <tr>
                         <td class="boxName">
-                            <%= Team.find(nflteam.team_id).name %>
+                            <%= Team.find(nflteam.team_id).abr_name %>
                         </td> 
                     </tr> 
                 

@@ -12,6 +12,28 @@ class Team < ApplicationRecord
   has_one_attached :avatar
   has_many :userteams,  :dependent => :destroy 
   has_many :users, through: :userteams, :dependent => :destroy 
+  # belongs_to :winslose
+
+
+  def self.read_file
+    aFile = File.new("input.txt", "r")
+    if aFile
+      content = aFile.sysread(5)
+      
+    else
+      content =  "Unable to open file!"
+    end
+    puts content
+
+  end
+
+
+  def self.match_names(x)
+   
+  end
+
+  
+  
 
 
    
@@ -69,17 +91,7 @@ def self.get_api
 
 end
    
-
-def self.get_stock_name
-  @stom = {"data"=>[{"ticker"=>"0769929D", "figi_ticker"=>"0769929D:UA", "figi"=>"BBG000QHR2P2"}, {"ticker"=>"1051400D", "figi_ticker"=>nil, "figi"=>"BBG006YWPLL1"}, {"ticker"=>"144ASERA", "figi_ticker"=>nil, "figi"=>"BBG0008C0WW8", "composite_figi"=>nil, "composite_figi_ticker"=>"144ASERA:US"}, {"ticker"=>"144ASERB", "figi_ticker"=>nil, "figi"=>"BBG0008C0WV9", "composite_figi"=>nil, "composite_figi_ticker"=>"144ASERB:US"}, {"ticker"=>"2274054Z", "figi_ticker"=>"2274054Z:UA", "figi"=>"BBG000TRGT25", "composite_figi"=>"BBG000TRGSS9"},]}
-  @stom['data']
-end
-
-
-def self.get_stock_name_and_price
-  get_stock_name
-end
-
+ 
 
  
 
